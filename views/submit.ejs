@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="centered topreduce">
+    <i class="fas fa-key fa-6x"></i>
+    
+    <h1 class="display-3">Time To Vote</h1>
+    <p class="cool-text">Vote Independently !</p>
+    <p class="lead margin">Select from below and Submit</p>
+
+    <!-- SUBMIT FORM IS STILL GET BECAUSE OF LACK OF BLOCKCHAIN LOGIC IN THIS LEVEL
+          LETS GET TO POST IN NEXT LEVELS -->
+
+    <form action="/result" method="POST">
+         
+      <div class="hiddenradio">
+        <label>
+          <input type="radio" name="test" value="null" >
+          <img src="images/logos/bjp.png">
+        </label>
+        
+        <label>
+          <input type="radio" name="test" value="null">
+          <img src="images/logos/bsp.jpg">
+        </label>
+
+        <label>
+          <input type="radio" name="test" value="null">
+          <img src="images/logos/pwp.png">
+        </label>
+
+        <label>
+          <input type="radio" name="test" value="null">
+          <img src="images/logos/sik.png">
+        </label>
+
+        <label>
+          <input type="radio" name="test" value="null">
+          <img src="images/logos/trs.png">
+        </label>
+      </div>
+    <!-- <img src="images/logos/trs.png" alt="" srcset=""> -->
+
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+
+
+  </div>
+</div>
+<%- include('partials/footer') %>
