@@ -4,6 +4,13 @@ body {
   background-attachment: fixed;
 }
 
+.card {
+  
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
 .centered {
     padding-top: 200px;
     text-align: center;
@@ -17,6 +24,17 @@ body {
   border-radius:10px;
 }
 
+.left {
+  width: 50%;
+  padding: 10px;
+  float: left;
+}
+
+.right {
+  width: 50%;
+  padding: 10px;
+  float: right;
+}
 .cool-text {
   text-align: center;
   font-size: 2rem;
@@ -80,4 +98,34 @@ body {
 
 .topreduce {
   padding: 50px;
+}
+
+ion-icon {
+  font-size: 64px;
+  color: black;
+  stroke-width: 2px;
+}
+
+.subbtn {
+  margin-left: 250px;
+  width: 27%;
+}
+
+.form-group {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.input-msg {
+  position: absolute;
+  margin: 5px; 
+  font-size: 13px;
+}
+
+#password-message {
+  color: green;
+}
+
+.login-card {
+  width: 60%;
 }

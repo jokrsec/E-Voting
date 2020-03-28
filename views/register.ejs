@@ -9,15 +9,44 @@
 
           <!-- Makes POST request to /register route -->
           <form action="/register" method="POST">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="email">
+            <center><img src="https://img.icons8.com/ios-filled/100/000000/user.png"/></center>           
+            
+            <div class="left">
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" id="pass" class="form-control" name="newPassword" placeholder="New Password">
+                <p class="input-msg" id="password-message"></p>
+              </div>     
+              <div class="form-group">
+                <input type="password" id="confirmpass" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+                <p class="input-msg" id="confirm-message"></p>
+              </div>             
+              <div class="form-group">             
+                <input type="text" class="form-control" name="voterName" placeholder="Name of Voter">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password">
+            
+            <div class="right">    
+              <div class ="form-group">
+                <select class="custom-select my-select" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>   
+              </div>                                  
+              <div class="form-group">
+                <input type="date" class="form-control" name="dob" placeholder="Date of Birth">
+              </div>  
+              <div class="form-group">
+                <input type="text" class="form-control" name="adhaarNo" placeholder="Adhaar number">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="voterId" placeholder="Voter ID">
+              </div>              
             </div>
-            <button type="submit" class="btn btn-dark">Register</button>
+            
+            <button type="submit" class="btn btn-dark subbtn">Register</button>
           </form>
 
         </div>
@@ -38,4 +67,20 @@
   </div>
 </div>
 
+
+
+
+<script>
+  $('#confirmpass').on('keyup', function () {
+    if ($('#pass').val() == $('#confirmpass').val()) {
+      $('#confirm-message').html('Password Matched').css('color', 'green');
+    } else 
+      $('#confirm-message').html('Not matched').css('color', 'red');
+  });
+</script>
+
+
+
+
 <%- include('partials/header') %>
+                                                                                                                                         

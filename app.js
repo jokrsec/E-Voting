@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const encrypt = require('mongoose-encryption');
 const cool = require('cool-ascii-faces');
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.get('/cool', (req, res) => res.send(cool()));
+let saltRounds = 10;
 
 
 mongoose.connect("mongodb+srv://jokr:Hemanth007@cluster0-ymhul.mongodb.net/evotingUsersDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
@@ -40,13 +42,22 @@ app.post("/result", function(req, res){
 });
 
 app.post("/register", function(req, res){
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.body.email; 
+    const password = req.body.newPassword;
+    console.log(req.body.confirmPassword)
+    console.log(req.body.voterName)
+    console.log(req.body.gender)
+    console.log(req.body.adhaarNo)
+    console.log(req.body.dob)
+    console.log(req.body.voterId)
 
-    new User({
-        email: email,
-        password: password
-    }).save();
+    bcrypt.hash(password, saltRounds, function(err, passwordHash){        
+        new User({
+            email: email,
+            password: passwordHash
+        }).save();
+    });
+
     console.log("Registered New User");
     res.render("submit");
 
@@ -62,14 +73,16 @@ app.post("/login", function(req, res){
             res.render("login", {validation: "nouser"});
         }
         else{
-            if(foundUser.password === password){
-                console.log("User LoggedIn");
-                res.render("submit");
-            }
-            else{
-                console.log("Wrong Password");
-                res.render("login", {validation: "wrong"});
-            }
+            bcrypt.compare(password, foundUser.password, function(err, result){
+                if (result === true){
+                    console.log("User LoggedIn");
+                    res.render("submit");
+                }
+                else {
+                    console.log("Wrong Password");
+                    res.render("login", {validation: "wrong"});
+                }
+            });
         }   
     });
 });
