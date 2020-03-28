@@ -18,7 +18,13 @@ mongoose.connect("mongodb+srv://jokr:Hemanth007@cluster0-ymhul.mongodb.net/evoti
 
 const userSchema = new mongoose.Schema({
     email: String,
-    password: String
+    password: String,
+    voterName: String,
+    gender: String,
+    dob: Date,
+    adhaarNo: Number,
+    voterId: Number
+
 });
 
 //userSchema.plugin(encrypt, {secret: process.env.SECRET_KEY, encryptedFields: ["password"]});
@@ -43,18 +49,17 @@ app.post("/result", function(req, res){
 
 app.post("/register", function(req, res){
     const email = req.body.email; 
-    const password = req.body.newPassword;
-    console.log(req.body.confirmPassword)
-    console.log(req.body.voterName)
-    console.log(req.body.gender)
-    console.log(req.body.adhaarNo)
-    console.log(req.body.dob)
-    console.log(req.body.voterId)
+    const password = req.body.newPassword;    
 
     bcrypt.hash(password, saltRounds, function(err, passwordHash){        
         new User({
             email: email,
-            password: passwordHash
+            password: passwordHash,
+            voterName: req.body.voterName,
+            gender: req.body.gender,
+            dob: req.body.dob,
+            adhaarNo: req.body.adhaarNo,
+            voterId: req.body.voterId,
         }).save();
     });
 
